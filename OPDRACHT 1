@@ -1,0 +1,36 @@
+//leds defineren
+
+int leds[]={13,12,11,10,9,8};
+int Tempo=80;
+
+//leds hier uit en aan
+
+void setup()
+{
+  for(int x=0;x<=5;x++)
+  {
+    pinMode(leds[x],OUTPUT);
+  }
+}
+
+
+//leds uit en aan 
+void loop()
+{
+  for(int x=0;x<=4;x++)
+  {
+    digitalWrite(leds[x],HIGH);
+    delay(tempo);
+    digitalWrite(leds[x],LOW);
+    delay(tempo);
+  }
+  
+  for(int x=5;x>=1;x--)
+  {
+    digitalWrite(leds[x],HIGH);
+    delay(tempo);
+    digitalWrite(leds[x],LOW);
+    delay(tempo);
+  }
+  
+}
