@@ -1,0 +1,142 @@
+//library toevoegen
+
+#include <IRremote.h>
+
+//remote codes definitie geven 
+
+#define first_key 38108
+#define second_key 29937
+#define third_key 22976
+#define fourth_key 34528
+int receiver_pin = 5;
+
+//defineren van de led pinnen 
+int roodpin = 12;
+int witpin = 10;
+int blauwpin = 8;
+int groenpin= 7;
+int led[] = {0,0,0,0};
+int timer[] = {100, 200, 300, 400};
+IRrecv receiver(receiver_pin);
+decode_results output;
+
+//pinmodes bepalen en applicatie starten
+
+void setup()
+{
+Serial.begin(9600);
+receiver.enableIRIn();
+pinMode(roodpin , OUTPUT);
+pinMode(witpin , OUTPUT);
+pinMode(blauwpin , OUTPUT);
+pinMode(groenpin, OUTPUT);
+}
+
+
+//loop starten van de eerste pin
+void loop() {
+if (receiver.decode(&output)) {
+unsigned int value = output.value;
+switch(value) {
+case first_key:
+if(led[0] == 1) {
+digitalWrite(roodpin, LOW);
+led[0] = 0;
+} else {
+
+led[0] = 1;
+}
+break;
+case second_key:
+
+
+//loop starten van de tweede pin
+
+if(led[1] == 1) {
+digitalWrite(witpin, LOW);
+led[1] = 0;
+} else {
+
+led[1] = 1;
+}
+break;
+case third_key:
+
+
+
+//loop starten van de derde pin
+
+
+if(led[2] == 1) {
+digitalWrite(blauwpin, LOW);
+led[2] = 0;
+} else {
+
+led[2] = 1;
+}
+break;
+case fourth_key:
+
+
+
+//loop starten van de vierdepin
+
+
+if(led[3] == 1) {
+digitalWrite(groenpin, LOW);
+led[3] = 0;
+} else {
+led[3] = 1;
+}
+break;
+}
+Serial.println(value);
+receiver.resume();
+}
+
+
+
+//tweede en derde led knipperen + delay instellen van knippersnelheid
+
+if (led[0] == 0 && led[1] == 0 && led[2] == 0 && led[3] == 0)
+{
+  digitalWrite(witpin, HIGH);
+  digitalWrite(blauwpin, HIGH);
+  delay(timer[2]);
+  digitalWrite(witpin, LOW);
+  digitalWrite(blauwpin, LOW);
+  delay(timer[2]);
+}
+
+if (led[0] == 1)
+{
+  digitalWrite(roodpin, HIGH);
+delay(timer[0]);
+digitalWrite(roodpin, LOW);
+delay(timer[0]);
+}
+
+if (led[1] == 1)
+{
+  digitalWrite(witpin, HIGH);
+delay(timer[1]);
+digitalWrite(witpin, LOW);
+delay(timer[1]);
+}
+
+if (led[2] ==1)
+{
+  digitalWrite(blauwpin, HIGH);
+delay(timer[2]);
+digitalWrite(blauwpin, LOW);
+delay(timer[2]);
+}
+
+if (led[3] == 1)
+{
+  digitalWrite(groenpin, HIGH);
+  delay(timer[3]);
+  digitalWrite (groenpin, LOW);
+  delay(timer[3]);
+}
+}
