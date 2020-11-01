@@ -1,0 +1,56 @@
+
+//leds defineren
+
+char Incoming_value = 0;
+int led11 = 2;
+int led8 = 3;
+int led5 = 4;
+
+
+//applicatie starten met output 
+void setup() {
+  Serial.begin(9600);
+  pinMode(led11, OUTPUT);
+  pinMode(led8, OUTPUT);
+  pinMode(led5, OUTPUT);
+}
+void loop()
+{
+
+  if (Serial.available() > 0)
+  {
+    Incoming_value = Serial.read();  
+    Serial.print(Incoming_value);       
+    Serial.print("\n");
+/leds aan en uit zetten met een bepaalde delay om een stoplicht effect te geven)
+  }
+  if (Incoming_value == 's')  {        
+
+    digitalWrite(led5, LOW);
+    digitalWrite(led8, HIGH);
+    delay(60000);
+
+    digitalWrite(led8, LOW);
+    digitalWrite(led11, HIGH);
+    delay(12000);
+
+    digitalWrite(led11, LOW);
+    digitalWrite(led5, HIGH);
+    delay(12000);
+
+  }
+
+
+//oranje stoplicht knippert
+  else {
+    
+    digitalWrite(led11, LOW);
+    digitalWrite(led5, LOW);
+    digitalWrite(led8, LOW);
+    digitalWrite(led8, HIGH);
+    delay(1000);
+    digitalWrite(led8, LOW);
+    delay(1000);
+  }
+
+}
