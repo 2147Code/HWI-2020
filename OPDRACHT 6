@@ -1,0 +1,26 @@
+#include <Servo.h>
+
+Servo servo_8;
+
+
+//pinmode activeren
+void setup()
+{
+  pinMode(2, INPUT);
+  servo_8.attach(8);
+
+  pinMode(3, INPUT);
+}
+
+
+//servo meter draaipunt instellen
+void loop()
+{
+  if (digitalRead(2) == HIGH) {
+    servo_8.write(120);
+  }
+  if (digitalRead(3) == HIGH) {
+    servo_8.write(0);
+  }
+  delay(1); // kleine delay voor performance
+}
