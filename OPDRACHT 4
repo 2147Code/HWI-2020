@@ -1,0 +1,18 @@
+float temp;
+
+void setup()
+{
+//app starten
+  Serial.begin(9600);
+}
+//temperatuur berekenen
+void loop()
+{
+  temp = analogRead(A0);
+  temp = temp * 0.48828125;
+  Serial.print("TEMPERATUUR: ");
+  Serial.print(temp);
+  Serial.print("*C");
+  Serial.println();
+  delay(1000);
+}
