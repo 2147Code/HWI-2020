@@ -1,0 +1,18 @@
+#define R 11
+#define G 9
+#define B 10
+
+//output kleur geven
+
+void setup() {
+  pinMode(R,OUTPUT);
+  pinMode(G,OUTPUT);
+  pinMode(B,OUTPUT);
+}
+//leds latenwerken met een delay voor de overgang
+void loop() {
+  analogWrite(R, random(255));
+  analogWrite(G, random(255));
+  analogWrite(B, random(255));  
+  delay(2000);
+}
