@@ -1,0 +1,35 @@
+//defineren leds en potmeter
+  
+const int potmeterPin = A0;
+int pinArray[] = {2, 3, 4, 5, 6, 7, 8};
+int potmeterWaarde = 0;
+int o = 0;
+
+
+void setup() {
+  // leds een loop geven voor uit/aan zetten
+  for (int i = 0; i <= 8; i++)
+  {
+    pinMode(pinArray[i],OUTPUT);
+  }
+}
+
+void loop() {
+  // potmeter een waarde geven
+  potmeterWaarde = map(analogRead(potmeterPin), 0, 1023, 0, 8);
+
+
+
+//potmeter pin modus bepalen
+  if (o < potmeterWaarde)
+  {
+    digitalWrite(pinArray[o], HIGH);
+    o++;
+  }
+
+  if (o>potmeterWaarde)
+  {
+    digitalWrite(pinArray[o], LOW);
+    o--;
+  }
+}
